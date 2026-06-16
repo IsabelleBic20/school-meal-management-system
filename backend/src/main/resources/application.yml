@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: school-meal-management
+  
+  datasource:
+    url: jdbc:sqlserver://sqlserver:1433;databaseName=SchoolMealDB;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: YourPassword123!
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        format_sql: true
+        jdbc:
+          batch_size: 10
+          fetch_size: 50
+  
+  flyway:
+    baseline-on-migrate: true
+    locations: classpath:db/migration
+    out-of-order: false
+
+jwt:
+  secret: your-secret-key-change-in-production-environment-very-important-32-chars
+  expiration: 86400000  # 24 hours
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+logging:
+  level:
+    root: INFO
+    com.schoolmeal: DEBUG
